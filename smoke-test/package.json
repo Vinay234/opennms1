@@ -11,6 +11,7 @@
     "eslint-loader": "^1.2.1",
     "fs-extra": "^0.26.5",
     "moment": "^2.11.2",
+    "node-uuid": "^1.4.7",
     "path": "^0.12.7",
     "phantomjs-prebuilt": "^2.1.3"
   },
