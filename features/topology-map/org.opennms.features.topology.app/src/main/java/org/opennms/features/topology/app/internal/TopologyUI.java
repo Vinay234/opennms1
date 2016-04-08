@@ -75,7 +75,6 @@ import org.opennms.features.topology.app.internal.TopologyComponent.VertexUpdate
 import org.opennms.features.topology.app.internal.jung.TopoFRLayoutAlgorithm;
 import org.opennms.features.topology.app.internal.operations.TopologySelectorOperation;
 import org.opennms.features.topology.app.internal.support.CategoryHopCriteria;
-import org.opennms.features.topology.app.internal.support.FontAwesomeIcons;
 import org.opennms.features.topology.app.internal.support.IconRepositoryManager;
 import org.opennms.features.topology.app.internal.ui.HudDisplay;
 import org.opennms.features.topology.app.internal.ui.InfoPanel;
@@ -501,8 +500,6 @@ public class TopologyUI extends UI implements CommandUpdateListener, MenuItemUpd
 
 	@Override
     protected void init(final VaadinRequest request) {
-        FontAwesomeIcons.load(new ThemeResource("font-awesome/css/font-awesome.min.css"));
-
         try {
             m_headerHtml = getHeader(((VaadinServletRequest) request).getHttpServletRequest());
         } catch (final Exception e) {
@@ -717,26 +714,26 @@ public class TopologyUI extends UI implements CommandUpdateListener, MenuItemUpd
 
         slider.setImmediate(true);
 
-        final NativeButton showFocusVerticesBtn = new NativeButton(FontAwesomeIcons.Icon.eye_open.variant());
+        final NativeButton showFocusVerticesBtn = new NativeButton();
+        final Boolean[] eyeClosed = new Boolean[] {false};
+        showFocusVerticesBtn.setIcon(FontAwesome.EYE);
         showFocusVerticesBtn.setDescription("Toggle Highlight Focus Nodes");
-        showFocusVerticesBtn.setHtmlContentAllowed(true);
         showFocusVerticesBtn.addClickListener(new ClickListener() {
             @Override
             public void buttonClick(ClickEvent event) {
-                if(showFocusVerticesBtn.getCaption().equals(FontAwesomeIcons.Icon.eye_close.variant())){
-                    showFocusVerticesBtn.setCaption(FontAwesomeIcons.Icon.eye_open.variant());
+                if(eyeClosed[0]) {
+                    showFocusVerticesBtn.setIcon(FontAwesome.EYE);
                 } else {
-                    showFocusVerticesBtn.setCaption(FontAwesomeIcons.Icon.eye_close.variant());
+                    showFocusVerticesBtn.setIcon(FontAwesome.EYE_SLASH);
                 }
+                eyeClosed[0] = !eyeClosed[0]; // toggle
                 m_topologyComponent.getState().setHighlightFocus(!m_topologyComponent.getState().isHighlightFocus());
                 m_topologyComponent.updateGraph();
             }
         });
 
         final NativeButton magnifyBtn = new NativeButton();
-        magnifyBtn.setHtmlContentAllowed(true);
-        magnifyBtn.setCaption("<i class=\"" + FontAwesomeIcons.Icon.zoom_in.stylename() + "\" ></i>");
-        magnifyBtn.setStyleName("icon-button");
+        magnifyBtn.setIcon(FontAwesome.SEARCH_PLUS);
         magnifyBtn.addClickListener(new ClickListener() {
             @Override
             public void buttonClick(ClickEvent event) {
@@ -747,9 +744,7 @@ public class TopologyUI extends UI implements CommandUpdateListener, MenuItemUpd
         });
 
         final NativeButton demagnifyBtn = new NativeButton();
-        demagnifyBtn.setHtmlContentAllowed(true);
-        demagnifyBtn.setCaption("<i class=\"" + FontAwesomeIcons.Icon.zoom_out.stylename() + "\" ></i>");
-        demagnifyBtn.setStyleName("icon-button");
+        demagnifyBtn.setIcon(FontAwesome.SEARCH_MINUS);
         demagnifyBtn.addClickListener(new ClickListener() {
             @Override
             public void buttonClick(ClickEvent event) {
@@ -766,8 +761,7 @@ public class TopologyUI extends UI implements CommandUpdateListener, MenuItemUpd
         sliderLayout.addComponent(demagnifyBtn);
 
         m_szlOutBtn = new Button();
-        m_szlOutBtn.setHtmlContentAllowed(true);
-        m_szlOutBtn.setCaption(FontAwesomeIcons.Icon.arrow_down.variant());
+        m_szlOutBtn.setIcon(FontAwesome.ARROW_DOWN);
         m_szlOutBtn.setDescription("Collapse Semantic Zoom Level");
         m_szlOutBtn.setEnabled(m_graphContainer.getSemanticZoomLevel() > 0);
         m_szlOutBtn.addClickListener(new ClickListener() {
@@ -783,8 +777,7 @@ public class TopologyUI extends UI implements CommandUpdateListener, MenuItemUpd
         });
 
         final Button szlInBtn = new Button();
-        szlInBtn.setHtmlContentAllowed(true);
-        szlInBtn.setCaption(FontAwesomeIcons.Icon.arrow_up.variant());
+        szlInBtn.setIcon(FontAwesome.ARROW_UP);
         szlInBtn.setDescription("Expand Semantic Zoom Level");
         szlInBtn.addClickListener(new ClickListener() {
 
@@ -827,8 +820,8 @@ public class TopologyUI extends UI implements CommandUpdateListener, MenuItemUpd
             }
         });
 
-        final Button historyBackBtn = new Button(FontAwesomeIcons.Icon.arrow_left.variant());
-        historyBackBtn.setHtmlContentAllowed(true);
+        final Button historyBackBtn = new Button();
+        historyBackBtn.setIcon(FontAwesome.ARROW_LEFT);
         historyBackBtn.setDescription("Click to go back");
         historyBackBtn.addClickListener(new ClickListener() {
             @Override
@@ -837,8 +830,8 @@ public class TopologyUI extends UI implements CommandUpdateListener, MenuItemUpd
             }
         });
 
-        final Button historyForwardBtn = new Button(FontAwesomeIcons.Icon.arrow_right.variant());
-        historyForwardBtn.setHtmlContentAllowed(true);
+        final Button historyForwardBtn = new Button();
+        historyForwardBtn.setIcon(FontAwesome.ARROW_RIGHT);
         historyForwardBtn.setDescription("Click to go forward");
         historyForwardBtn.addClickListener(new ClickListener() {
             @Override
@@ -905,8 +898,8 @@ public class TopologyUI extends UI implements CommandUpdateListener, MenuItemUpd
         layout.setSpacing(true);
         layout.setDefaultComponentAlignment(Alignment.MIDDLE_CENTER);
 
-        Button showAllMapBtn = new Button(FontAwesomeIcons.Icon.globe.variant());
-        showAllMapBtn.setHtmlContentAllowed(true);
+        Button showAllMapBtn = new Button();
+        showAllMapBtn.setIcon(FontAwesome.GLOBE);
         showAllMapBtn.setDescription("Show Entire Map");
         showAllMapBtn.addClickListener(new ClickListener() {
             @Override
@@ -915,8 +908,8 @@ public class TopologyUI extends UI implements CommandUpdateListener, MenuItemUpd
             }
         });
 
-        Button centerSelectionBtn = new Button(FontAwesomeIcons.Icon.location_arrow.variant());
-        centerSelectionBtn.setHtmlContentAllowed(true);
+        Button centerSelectionBtn = new Button();
+        centerSelectionBtn.setIcon(FontAwesome.LOCATION_ARROW);
         centerSelectionBtn.setDescription("Center On Selection");
         centerSelectionBtn.addClickListener(new ClickListener() {
             @Override
