@@ -98,6 +98,7 @@ import com.github.wolfie.refresher.Refresher;
 import com.google.common.base.Strings;
 import com.google.common.collect.Lists;
 import com.vaadin.annotations.PreserveOnRefresh;
+import com.vaadin.annotations.StyleSheet;
 import com.vaadin.annotations.Theme;
 import com.vaadin.annotations.Title;
 import com.vaadin.data.Property;
@@ -142,6 +143,9 @@ import com.vaadin.ui.Window;
 @Theme("topo_default")
 @Title("OpenNMS Topology Map")
 @PreserveOnRefresh
+@StyleSheet(value = {
+        "theme://ionicons/css/ionicons.min.css"
+})
 public class TopologyUI extends UI implements CommandUpdateListener, MenuItemUpdateListener, ContextMenuHandler, WidgetUpdateListener, WidgetContext, UriFragmentChangedListener, GraphContainer.ChangeListener, MapViewManagerListener, VertexUpdateListener, SelectionListener, VerticesUpdateManager.VerticesUpdateListener {
 
     private class DynamicUpdateRefresher implements Refresher.RefreshListener {
@@ -792,7 +796,7 @@ public class TopologyUI extends UI implements CommandUpdateListener, MenuItemUpd
 
 
         m_panBtn = new Button();
-        m_panBtn.setIcon(new ThemeResource("images/cursor_drag_arrow.png"));
+        m_panBtn.setIcon(FontAwesome.ARROWS);
         m_panBtn.setDescription("Pan Tool");
         m_panBtn.setStyleName("toolbar-button down");
 
