@@ -164,6 +164,14 @@
       <version>${camelVersion}</version>
       <exclusions>
         <exclusion>
+          <groupId>com.sun.xml.bind</groupId>
+          <artifactId>jaxb-impl</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>org.springframework</groupId>
+          <artifactId>spring-aop</artifactId>
+        </exclusion>
+        <exclusion>
           <groupId>org.springframework</groupId>
           <artifactId>spring-beans</artifactId>
         </exclusion>
@@ -173,11 +181,15 @@
         </exclusion>
         <exclusion>
           <groupId>org.springframework</groupId>
-          <artifactId>spring-jms</artifactId>
+          <artifactId>spring-core</artifactId>
         </exclusion>
         <exclusion>
           <groupId>org.springframework</groupId>
-          <artifactId>spring-aop</artifactId>
+          <artifactId>spring-expression</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>org.springframework</groupId>
+          <artifactId>spring-jms</artifactId>
         </exclusion>
         <exclusion>
           <groupId>org.springframework</groupId>
