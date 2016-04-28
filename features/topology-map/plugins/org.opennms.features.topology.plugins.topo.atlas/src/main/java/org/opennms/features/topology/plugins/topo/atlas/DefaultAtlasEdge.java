@@ -1,8 +1,8 @@
 /*******************************************************************************
  * This file is part of OpenNMS(R).
  *
- * Copyright (C) 2012-2014 The OpenNMS Group, Inc.
- * OpenNMS(R) is Copyright (C) 1999-2014 The OpenNMS Group, Inc.
+ * Copyright (C) 2016 The OpenNMS Group, Inc.
+ * OpenNMS(R) is Copyright (C) 1999-2016 The OpenNMS Group, Inc.
  *
  * OpenNMS(R) is a registered trademark of The OpenNMS Group, Inc.
  *
@@ -26,47 +26,25 @@
  *     http://www.opennms.com/
  *******************************************************************************/
 
-package org.opennms.features.topology.plugins.topo.atlas.vertices;
+package org.opennms.features.topology.plugins.topo.atlas;
 
 import java.util.HashMap;
 
-import org.opennms.features.topology.api.topo.LevelAware;
-import org.opennms.features.topology.api.topo.SimpleLeafVertex;
+import org.opennms.features.topology.api.topo.AbstractEdge;
 
-public class DefaultAtlasVertex extends SimpleLeafVertex implements LevelAware {
-    private String glue;
-    private final String subGraphId;
+public class DefaultAtlasEdge extends AbstractEdge {
+
     private HashMap<String, Object> properties = new HashMap<>();
 
-    public DefaultAtlasVertex(final String namespace,
-                              final String id,
-                              final String label,
-                              final String subGraphId,
-                              final String glue) {
-        super(namespace, id, null, null);
-        this.setLabel(label);
-        this.subGraphId = subGraphId;
-        this.glue = glue;
-    }
-
-    public String getGlue() {
-        return this.glue;
-    }
-
-    public String getSubGraphId() {
-        return this.subGraphId;
-    }
-
-    @Override
-    public int getLevel() {
-        return glue != null ? 1 : 0;
+    public DefaultAtlasEdge(String namespace, String id, DefaultAtlasVertex source, DefaultAtlasVertex target) {
+        super(namespace, id, source, target);
     }
 
     public void setProperties(HashMap<String, Object> properties) {
         this.properties = properties;
     }
 
-    public void setGlue(String subGraphId) {
-        this.glue = subGraphId;
+    public HashMap<String, Object> getProperties() {
+        return properties;
     }
 }

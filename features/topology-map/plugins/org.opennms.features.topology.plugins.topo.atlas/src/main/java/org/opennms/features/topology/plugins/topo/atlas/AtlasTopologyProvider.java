@@ -45,7 +45,6 @@ import javax.xml.bind.JAXBException;
 import org.opennms.features.topology.api.browsers.ContentType;
 import org.opennms.features.topology.api.browsers.SelectionChangedListener;
 import org.opennms.features.topology.api.support.VertexHopGraphProvider;
-import org.opennms.features.topology.api.topo.AbstractEdge;
 import org.opennms.features.topology.api.topo.AbstractTopologyProvider;
 import org.opennms.features.topology.api.topo.Criteria;
 import org.opennms.features.topology.api.topo.GraphProvider;
@@ -60,7 +59,6 @@ import org.opennms.features.topology.graphml.GraphMLProperties;
 import org.opennms.features.topology.graphml.GraphMLReader;
 import org.opennms.features.topology.graphml.InvalidGraphException;
 import org.opennms.features.topology.plugins.topo.atlas.criteria.AtlasSubGraphCriteria;
-import org.opennms.features.topology.plugins.topo.atlas.vertices.DefaultAtlasVertex;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -140,7 +138,7 @@ public class AtlasTopologyProvider extends AbstractTopologyProvider implements G
             // Add all Edges to container
             for (GraphMLGraph eachGraph : graphML.getGraphs()) {
                 for (GraphMLEdge edge : eachGraph.getEdges()) {
-                    AbstractEdge newEdge = connectVertices(edge.getId(), edge.getSource(), edge.getTarget(), edge.getNamespace());
+                    DefaultAtlasEdge newEdge = createEdge(edge.getId(), edge.getSource(), edge.getTarget(), edge.getNamespace());
                     newEdge.setLabel(edge.getLabel());
                     newEdge.setTooltipText(edge.getTooltipText());
                 }
@@ -150,10 +148,10 @@ public class AtlasTopologyProvider extends AbstractTopologyProvider implements G
         }
     }
 
-    private AbstractEdge connectVertices(String id, GraphMLNode source, GraphMLNode target, String namespace) {
+    private DefaultAtlasEdge createEdge(String id, GraphMLNode source, GraphMLNode target, String namespace) {
         DefaultAtlasVertex sourceVertex = (DefaultAtlasVertex) getVertex(source.getNamespace(), source.getId());
         DefaultAtlasVertex targetVertex = (DefaultAtlasVertex) getVertex(target.getNamespace(), target.getId());
-        return connectVertices(id, sourceVertex, targetVertex, namespace);
+        return new DefaultAtlasEdge(namespace, id, sourceVertex, targetVertex);
     }
 
     @Override

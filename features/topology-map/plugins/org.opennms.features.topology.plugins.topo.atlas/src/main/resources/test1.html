@@ -1,0 +1,27 @@
+{% set visible = edge != null %}
+{% set title = "This is a Test" %}
+
+{% set currentRSL = "TODO" %}
+{% set currentBWUtilization = "TODO" %}
+{% set currentModulation = "TODO" %}
+
+<v-panel>
+    <v-vertical-layout spacing margin>
+        <v-label><h3>{{title}}</h3></v-label>
+        <v-form-layout spacing>
+            <v-label caption="{{edge.LOGICAL_SITE_A}}"><=> {{edge.LOGICAL_SITE_Z}} {{edge.PROTECTION_SCHEME}} {% if edge.PROTECTION_SCHEME != null && edge.PROTECTION_SCHEME.length() > 0 %} Aggregate {% endif %}</v-label>
+            <v-label caption="RSL (Delta)">{{currentRSL}}</v-label>
+            <v-label caption="Capacity">{{edge.TOTAL_LINK_CAPACITY}} Mb/s</v-label>
+            <v-label caption="Utilization">{{currentBWUtilization}}</v-label>
+            <v-label caption="Radio/Modem Model">{{edge.RADIO_MODEL_A}} Mb/s</v-label>
+            <v-label caption="CV Link ID">{{edge.CLEARVISION_LINK_ID}}</v-label>
+            <v-label caption="NRM MW path">{{edge.MICROWAVE_PATH_NAME}} Mb/s</v-label>
+            <v-label caption="channels">TODO calc (Count of MICROWAVE_PATH_NAME)</v-label>
+            <v-label caption="Length">{{edge.PATH_LENGTH_MILES}}</v-label>
+            <v-label caption="A TX Freq.">{{edge.TRANSMIT_FREQ_A}}</v-label>
+            <v-label caption="Z TX Freq.">{{edge.TRANSMIT_FREQ_Z}}</v-label>
+            <v-label caption="Design Modulation">{{edge.DESIGNED_TX_MOD_TYPE}}</v-label>
+            <v-label caption="Actual Modulation">{{currentModulation}}</v-label>
+        </v-form-layout>
+    </v-vertical-layout>
+</v-panel>

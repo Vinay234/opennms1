@@ -38,7 +38,7 @@ import org.opennms.features.topology.api.OperationContext;
 import org.opennms.features.topology.api.topo.VertexRef;
 import org.opennms.features.topology.plugins.topo.atlas.AtlasTopologyProvider;
 import org.opennms.features.topology.plugins.topo.atlas.criteria.AtlasSubGraphCriteria;
-import org.opennms.features.topology.plugins.topo.atlas.vertices.DefaultAtlasVertex;
+import org.opennms.features.topology.plugins.topo.atlas.DefaultAtlasVertex;
 
 import com.google.common.base.Strings;
 

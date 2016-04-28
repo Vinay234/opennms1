@@ -34,7 +34,7 @@ import java.util.Objects;
 
 import org.opennms.features.topology.api.NamespaceAware;
 import org.opennms.features.topology.api.topo.Criteria;
-import org.opennms.features.topology.plugins.topo.atlas.vertices.DefaultAtlasVertex;
+import org.opennms.features.topology.plugins.topo.atlas.DefaultAtlasVertex;
 
 public class AtlasSubGraphCriteria extends Criteria implements NamespaceAware {
     private final String namespace;

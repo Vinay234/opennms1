@@ -26,7 +26,12 @@
  *     http://www.opennms.com/
  *******************************************************************************/
 
-package org.opennms.features.topology.plugins.topo.atlas;
+package org.opennms.netmgt.measurements.api;
 
-public class AtlasVertexProvider {
+import org.opennms.netmgt.measurements.api.exceptions.MeasurementException;
+import org.opennms.netmgt.measurements.model.QueryRequest;
+import org.opennms.netmgt.measurements.model.QueryResponse;
+
+public interface MyMeasurementsService {
+    QueryResponse query(QueryRequest request) throws MeasurementException;
 }

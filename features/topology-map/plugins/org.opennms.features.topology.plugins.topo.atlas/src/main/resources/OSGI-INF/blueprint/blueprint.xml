@@ -49,10 +49,12 @@ http://aries.apache.org/blueprint/xmlns/blueprint-cm/v1.1.0 http://aries.apache.
 	</service>
 
 	<!-- Info Items -->
-	<bean id="navigationInfoPanelItem" class="org.opennms.features.topology.plugins.topo.atlas.info.NavigationInfoPanelItem" >
-		<argument ref="atlasTopologyProvider" />
-	</bean>
-	<service interface="org.opennms.features.topology.api.info.InfoPanelItem" ref="navigationInfoPanelItem">
-
+	<service interface="org.opennms.features.topology.api.info.InfoPanelItem">
+		<bean class="org.opennms.features.topology.plugins.topo.atlas.info.NavigationInfoPanelItem" >
+			<argument ref="atlasTopologyProvider" />
+		</bean>
+	</service>
+	<service interface="org.opennms.features.topology.api.info.InfoPanelItem">
+		<bean class="org.opennms.features.topology.plugins.topo.atlas.info.GenericInfoPanelItem" />
 	</service>
 </blueprint>

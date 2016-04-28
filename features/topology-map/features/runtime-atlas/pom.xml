@@ -28,6 +28,9 @@
           <features>
             <feature>opennms-topology-runtime-base</feature>
           </features>
+          <bundles>
+            <bundle>wrap:mvn:com.hubspot.jinjava/jinjava/2.1.0</bundle>
+          </bundles>
         </configuration>
       </plugin>
     </plugins>
@@ -40,6 +43,12 @@
       <version>${project.version}</version>
       <classifier>features</classifier>
       <type>xml</type>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.hubspot.jinjava</groupId>
+      <artifactId>jinjava</artifactId>
+      <version>2.1.0</version>
       <scope>provided</scope>
     </dependency>
     <dependency>

@@ -34,7 +34,7 @@ import org.opennms.features.topology.api.support.VertexHopGraphProvider;
 import org.opennms.features.topology.plugins.topo.atlas.AtlasTopologyProvider;
 import org.opennms.features.topology.plugins.topo.atlas.criteria.AtlasSubGraphCriteria;
 import org.opennms.features.topology.plugins.topo.atlas.operations.NavigateOperation;
-import org.opennms.features.topology.plugins.topo.atlas.vertices.DefaultAtlasVertex;
+import org.opennms.features.topology.plugins.topo.atlas.DefaultAtlasVertex;
 
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Component;
