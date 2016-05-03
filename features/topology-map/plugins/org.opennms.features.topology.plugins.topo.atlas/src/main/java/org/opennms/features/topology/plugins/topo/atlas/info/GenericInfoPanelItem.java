@@ -101,7 +101,14 @@ public class GenericInfoPanelItem implements InfoPanelItem {
     private final Jinjava jinjava;
 
     public GenericInfoPanelItem() throws InstantiationException, IllegalAccessException {
-        this.jinjava = new Jinjava();
+        ClassLoader tccl = Thread.currentThread().getContextClassLoader();
+        try {
+            Thread.currentThread().setContextClassLoader(getClass().getClassLoader());
+
+            this.jinjava = new Jinjava();
+        } finally {
+            Thread.currentThread().setContextClassLoader(tccl);
+        }
     }
 
     @Override
